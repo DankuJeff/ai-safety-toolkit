@@ -1,0 +1,75 @@
+# =============================================================================
+# SECRETS & ENVIRONMENT — never commit
+# =============================================================================
+.env
+.env.*
+!.env.example
+
+# =============================================================================
+# RUNTIME DATA — generated on first run, never commit
+# =============================================================================
+# SQLite databases and journal files (WAL mode creates -shm and -wal siblings)
+*.db
+*.db-shm
+*.db-wal
+
+# Log files
+*.log
+logs/
+
+# =============================================================================
+# PYTHON
+# =============================================================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Build artifacts
+build/
+dist/
+
+# Test and coverage artifacts
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage/
+
+# Type-checker and linter caches
+.mypy_cache/
+.ruff_cache/
+.dmypy.json
+
+# =============================================================================
+# NODE / FRONTEND
+# =============================================================================
+node_modules/
+.vite/
+
+# Built dashboard — rebuilt with `npm run build`, never committed
+gp2-redteam/dashboard/dist/
+
+# =============================================================================
+# TOOL CONFIG (workspace-local, not relevant to repo consumers)
+# =============================================================================
+.claude/
+
+# =============================================================================
+# PERSONAL / WORKSPACE FILES — not relevant to repo consumers
+# =============================================================================
+LINKEDIN_POSTS.md
+
+# =============================================================================
+# OS
+# =============================================================================
+.DS_Store
+Thumbs.db
+desktop.ini
