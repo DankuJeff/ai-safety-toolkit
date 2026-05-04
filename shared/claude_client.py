@@ -65,4 +65,10 @@ class ClaudeClient:
         except json.JSONDecodeError:
             # Strip markdown code fences if present
             stripped = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-            return json.loads(stripped)
+            try:
+                return json.loads(stripped)
+            except json.JSONDecodeError as e:
+                # Judge sometimes appends trailing text after the JSON object
+                if e.msg == "Extra data":
+                    return json.loads(stripped[: e.pos])
+                raise

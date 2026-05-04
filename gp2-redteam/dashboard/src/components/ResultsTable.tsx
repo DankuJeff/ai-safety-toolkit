@@ -18,9 +18,13 @@ const behaviorStyle: Record<string, string> = {
 }
 
 export default function ResultsTable({ results }: Props) {
-  const [expandedId, setExpandedId] = useState<string | null>(null)
+  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set())
 
-  const toggle = (id: string) => setExpandedId(prev => (prev === id ? null : id))
+  const toggle = (id: string) => setExpandedIds(prev => {
+    const next = new Set(prev)
+    next.has(id) ? next.delete(id) : next.add(id)
+    return next
+  })
 
   return (
     <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
@@ -42,7 +46,7 @@ export default function ResultsTable({ results }: Props) {
           </thead>
           <tbody>
             {results.map(r => {
-              const isExpanded = expandedId === r.prompt_id
+              const isExpanded = expandedIds.has(r.prompt_id)
               return (
                 <>
                   <tr

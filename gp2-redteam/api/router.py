@@ -117,7 +117,7 @@ def regression(limit: int = 10, repo: RunRepository = Depends(get_repo)):
         {
             "run_id": r.id[:8],
             "model": r.model,
-            "date": r.started_at.strftime("%m/%d"),
+            "date": r.started_at.strftime("%H:%M"),
             "pass_rate": round(r.passed / (r.total - r.errors) * 100, 1) if (r.total - r.errors) > 0 else 0.0,
             "total": r.total,
         }
