@@ -42,6 +42,8 @@ class ClaudeClient:
                     system=system,
                     messages=[{"role": "user", "content": user}],
                 )
+                if not response.content:
+                    return ""
                 return response.content[0].text
             except anthropic.RateLimitError as e:
                 last_error = e
